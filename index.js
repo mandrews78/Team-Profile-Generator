@@ -3,7 +3,7 @@ const generatePage = require('./src/generatePage');
 
 //node modules
 const fs = require('fs');
-const iquirer = require('inquirer');
+const inquirer = require('inquirer');
 
 //team profiles
 const Engineer = require('.lib/Engineer');
