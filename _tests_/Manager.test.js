@@ -1,4 +1,4 @@
-// Manager constructor
+//uses manager constructor
 const { default: test } = require('node:test');
 const { hasUncaughtExceptionCaptureCallback } = require('process');
 const Manager = require('../lib/Manager');

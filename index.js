@@ -6,7 +6,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 //team profiles
-const Engineer = require('.lib/Engineer');
+const Engineer = require('./lib/Engineer');
 const Intern = require('.lib/Intern');
 const Manager = require('./lib/Manager');
 
@@ -15,7 +15,7 @@ const teamArray = []
 
 //start of the manager's prompts
 const addManager = () => {
-  return inquirer.prompt ([
+  return inquirer.prompt([
     {
       type: 'input',
       name: 'name',
@@ -23,7 +23,7 @@ const addManager = () => {
       validate: nameInput => {
         if (nameInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the manager's name.")
           return false;
         }
@@ -37,7 +37,7 @@ const addManager = () => {
         if (isNAN(nameInput)) {
           console.log("Please enter the manager's ID")
           return false;
-        }else {
+        } else {
           return true;
         }
       }
@@ -47,9 +47,9 @@ const addManager = () => {
       name: 'email',
       message: "Please enter the manager's email.",
       validate: emailInput => {
-        if (emailInput){
+        if (emailInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the manager's email!");
           return false;
         }
@@ -63,29 +63,29 @@ const addManager = () => {
         if (isNaN(userInput)) {
           console.log('Please enter an office number!')
           return false;
-        }else {
+        } else {
           return true;
         }
       }
     }
   ])
-  .then(managerInput => {
-    const {name, id, email, officeNumber} = managerInput;
-    const manager = new Manager (name, id, email, officeNumber);
+    .then(managerInput => {
+      const { name, id, email, officeNumber } = managerInput;
+      const manager = new Manager(name, id, email, officeNumber);
 
-    teamArray.push(manager);
-    console.log(manager);
-  })
+      teamArray.push(manager);
+      console.log(manager);
+    })
 };
 
 const promptEmployee = () => {
-  console.log (`
+  console.log(`
   =======================
   Add employees
   =======================
   `);
 
-  return inquirer.prompt ([
+  return inquirer.prompt([
     {
       type: "list",
       name: "role",
@@ -99,7 +99,7 @@ const promptEmployee = () => {
       validate: nameInput => {
         if (nameInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the employee's name!")
           return false;
         }
@@ -113,7 +113,7 @@ const promptEmployee = () => {
         if (isNAN(nameInput)) {
           console.log("Please enter the employee's ID!")
           return false;
-        }else {
+        } else {
           return true;
         }
       }
@@ -123,9 +123,9 @@ const promptEmployee = () => {
       name: 'email',
       message: "Please enter the employee's email.",
       validate: emailInput => {
-        if (emailInput){
+        if (emailInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the employee's email!");
           return false;
         }
@@ -139,7 +139,7 @@ const promptEmployee = () => {
       validate: nameInput => {
         if (nameInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the employee's github username!")
         }
       }
@@ -152,7 +152,7 @@ const promptEmployee = () => {
       validate: nameInput => {
         if (nameInput) {
           return true;
-        }else {
+        } else {
           console.log("Please enter the intern's school!")
         }
       }
@@ -163,31 +163,31 @@ const promptEmployee = () => {
       message: 'Would you like to add more team members?',
       default: false
     }
-  
+
   ])
-  .then(employeeData => {
-    //data for employee types
+    .then(employeeData => {
+      //data for employee types
 
-    let {name, id, email, role, github, school, confirmAddEmployee} = employeeData;
-    let employee;
+      let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
+      let employee;
 
-    if (role === "Engineer") {
-        employee = new Engineer (name, id, email, github);
+      if (role === "Engineer") {
+        employee = new Engineer(name, id, email, github);
         console.log(employee);
 
-    } else if (role === "Intern") {
-        employee = new Intern (name, id, email, school);
+      } else if (role === "Intern") {
+        employee = new Intern(name, id, email, school);
         console.log(employee);
-    }
+      }
 
-    teamArray.push(employee);
+      teamArray.push(employee);
 
-    if (confirmAddEmployee) {
+      if (confirmAddEmployee) {
         return promptEmployee(teamArray);
-    } else {
+      } else {
         return teamArray;
-    }
-  })
+      }
+    })
 };
 
 //function to generate HTML page file using file system (fs)
@@ -197,7 +197,7 @@ const writeFile = data => {
     if (err) {
       console.log(err);
       return;
-    //when the profile is created
+      //when the profile is created
     } else {
       console.log("Your team profile has been successfully created. Please look at index.html")
     }

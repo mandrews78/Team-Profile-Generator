@@ -1,4 +1,4 @@
-//Engineer constructor
+//uses engineer constructor
 const Engineer = require('../lib/Engineer');
 
 test("creates an Engineer object", () => {
