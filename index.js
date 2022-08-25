@@ -1,14 +1,14 @@
-//link to page creation
-const generateTeamPage = require('./src/teamPage');
-
 //node modules
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+//link to page creation
+const generateTeamPage = require('./src/teamPage');
+
 //team profiles
+const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern')
-const Manager = require('./lib/Manager');
 
 //team array
 const teamArray = []
@@ -169,7 +169,7 @@ const promptEmployee = () => {
       //data for employee types
 
       let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
-      let employee;
+      let employee = employeeData;
 
       if (role === "Engineer") {
         employee = new Engineer(name, id, email, github);

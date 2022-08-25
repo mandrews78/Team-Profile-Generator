@@ -1,56 +1,52 @@
 //Create Manager card
-const generateManager = function (manager) {
-    return
-    `<div class="col-4 mt-4">
-        <div class="card h-100">
-            <div class="card header">
-                <h3>${manager}</h3>
-                <h4>Manager</h4>
-            </div>
-
-            <div class="card-body">
-                <p class="id">ID: ${manager.id}</p>
-                <p email="id">Email: ${manager.email}</p>
-                <p class="id">Office Number: ${manager.officeNumber}</p>
-            </div>
-        </div>
-    </div>
-    `
-}
-
-//Create Engineer card
-
-const generateEngineer = function (engineer) {
+const generateManager = manager => {
     return `
     <div class="col-4 mt-4">
         <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
+                <h3>${manager.name}</h3>
+                <h4>Manager</h4>
+            </div>
+            <div class="card-body">
+                <p class="id">ID:  ${manager.id}</p>
+                <p email="id">Email:  ${manager.email}</p>
+                <p class="id">Office Number:  ${manager.officeNumber}</p>
+            </div>
+        </div>
+    </div>`
+}
+
+//Create Engineer card
+const generateEngineer = engineer => {
+    return `
+    <div class="col-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
                 <h3>${engineer.name}<h3>
                 <h4>Engineer</h4>
             </div>
             <div class="card-body">
-                <p class="id">ID: ${engineer.id}</p>
-                <p email="id">Email: ${engineer.email}</p>
-                <p class="github">Github:${engineer.github}</p>
+                <p class="id">ID:  ${engineer.id}</p>
+                <p email="id">Email:  ${engineer.email}</p>
+                <p class="github">Github:  ${engineer.github}</p>
             </div>
         </div>  
     </div>`
 }
 
 //Create Intern card
-
-const generateIntern = function (intern) {
+const generateIntern = intern => {
     return `
     <div class="col-4 mt-4">
         <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 <h3>${intern.name}<h3>
-                <h4>Engineer</h4>
+                <h4>Intern</h4>
             </div>
             <div class="card-body">
-                <p class="id">ID: ${intern.id}</p>
-                <p email="id">Email: ${intern.email}</p>
-                <p class="school">School: ${intern.school}></p>
+                <p class="id">ID:  ${intern.id}</p>
+                <p email="id">Email:  ${intern.email}</p>
+                <p class="school">School:  ${intern.school}</p>
             </div>  
         </div>  
     </div>`
@@ -58,7 +54,6 @@ const generateIntern = function (intern) {
 
 // Push array to page
 generateTeamPage = (data) => {
-
     //arrays for cards
     teamCardsArray = [];
 
@@ -82,7 +77,7 @@ generateTeamPage = (data) => {
             teamCardsArray.push(internCard);
         }
     }
-    const teamCards = teamCardsArray.join('')
+    const teamCards = teamCardsArray.join('');
 
     const generateTeam = createTeamPage(teamCards);
     return generateTeam;
@@ -98,12 +93,12 @@ const createTeamPage = teamCards => {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <link rel="stylesheet" href="style.css">
-      <title>X-Men Team Profile</title>
+      <title>Team Profile</title>
     </head>
     <body>
         <header>
             <nav class="navbar" id="navbar">
-                    <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">Team Profile</span>
+                    <span class="navbar-brand mb-0 bg-danger text-white py-5 h1 w-100 text-center" id="navbar-text"><h1>X-Men Team Profile</h1></span>
             </nav>
         </header>
         <main>
