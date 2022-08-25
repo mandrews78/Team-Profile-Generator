@@ -1,5 +1,4 @@
 //Create Manager card
-
 const generateManager = function (manager) {
     return
     `<div class="col-4 mt-4">
@@ -11,7 +10,7 @@ const generateManager = function (manager) {
 
             <div class="card-body">
                 <p class="id">ID: ${manager.id}</p>
-                <p email="id">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+                <p email="id">Email: ${manager.email}</p>
                 <p class="id">Office Number: ${manager.officeNumber}</p>
             </div>
         </div>
@@ -31,8 +30,8 @@ const generateEngineer = function (engineer) {
             </div>
             <div class="card-body">
                 <p class="id">ID: ${engineer.id}</p>
-                <p email="id">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-                <p class="github">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
+                <p email="id">Email: ${engineer.email}</p>
+                <p class="github">Github:${engineer.github}</p>
             </div>
         </div>  
     </div>`
@@ -50,7 +49,7 @@ const generateIntern = function (intern) {
             </div>
             <div class="card-body">
                 <p class="id">ID: ${intern.id}</p>
-                <p email="id">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
+                <p email="id">Email: ${intern.email}</p>
                 <p class="school">School: ${intern.school}></p>
             </div>  
         </div>  
@@ -58,10 +57,10 @@ const generateIntern = function (intern) {
 };
 
 // Push array to page
-generatePage = (data) => {
+generateTeamPage = (data) => {
 
     //arrays for cards
-    pageArray = [];
+    teamCardsArray = [];
 
     for (let i = 0; i < data.length; i++) {
         const employee = data[i];
@@ -69,26 +68,29 @@ generatePage = (data) => {
 
         if (role === 'Manager') {
             const managerCard = generateManager(employee);
-            pageArray.push(managerCard);
+
+            teamCardsArray.push(managerCard);
         }
         if (role === 'Engineer') {
             const engineerCard = generateEngineer(employee);
-            pageArray.push(engineerCard);
+
+            teamCardsArray.push(engineerCard);
         }
         if (role === 'Intern') {
             const internCard = generateIntern(employee);
-            pageArray.push(internCard);
+
+            teamCardsArray.push(internCard);
         }
     }
-    const employeeCards = pageArray.join('')
+    const teamCards = teamCardsArray.join('')
 
-    const generateTeam = generateTeamPage(employeeCards);
-    return generateTeam;  
+    const generateTeam = createTeamPage(teamCards);
+    return generateTeam;
 }
 
 //generate HTML page
-const generateTeamPage = function (employeeCards) {
-    return`
+const createTeamPage = teamCards => {
+    return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -108,7 +110,7 @@ const generateTeamPage = function (employeeCards) {
             <div class="container">
                 <div class="row justify-content-center" id="team-cards">
                     <!--Team Cards-->
-                    ${employeeCards}
+                    ${teamCards}
                 </div>
             </div>
         </main>
@@ -120,4 +122,4 @@ const generateTeamPage = function (employeeCards) {
   </html>`
 
 }
-module.exports = generatePage;
+module.exports = generateTeamPage;

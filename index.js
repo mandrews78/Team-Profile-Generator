@@ -1,5 +1,5 @@
 //link to page creation
-const generatePage = require('./src/generatePage');
+const generateTeamPage = require('./src/teamPage');
 
 //node modules
 const fs = require('fs');
@@ -7,7 +7,7 @@ const inquirer = require('inquirer');
 
 //team profiles
 const Engineer = require('./lib/Engineer');
-const Intern = require('.lib/Intern');
+const Intern = require('./lib/Intern')
 const Manager = require('./lib/Manager');
 
 //team array
@@ -33,8 +33,8 @@ const addManager = () => {
       type: 'input',
       name: 'id',
       message: "Please enter the manager's ID!",
-      validate: nameInput => {
-        if (isNAN(nameInput)) {
+      validate: ID => {
+        if (isNaN(ID)) {
           console.log("Please enter the manager's ID")
           return false;
         } else {
@@ -110,7 +110,7 @@ const promptEmployee = () => {
       name: 'id',
       message: "Please enter the employee's ID:",
       validate: nameInput => {
-        if (isNAN(nameInput)) {
+        if (isNaN(nameInput)) {
           console.log("Please enter the employee's ID!")
           return false;
         } else {
@@ -207,7 +207,7 @@ const writeFile = data => {
 addManager()
   .then(promptEmployee)
   .then(teamArray => {
-    return generateHTML(teamArray);
+    return generateTeamPage(teamArray);
   })
   .then(createHTML => {
     return writeFile(createHTML);
